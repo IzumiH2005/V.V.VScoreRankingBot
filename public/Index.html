@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEƝI🌿VIƊI🌿VIĆI - Bot Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .dashboard {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .trophy {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .trophy i {
+            font-size: 4rem;
+            color: #FFD700;
+            filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #00C851, #007E33);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            display: block;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0, 200, 81, 0.3);
+        }
+
+        .status-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 200, 81, 0.4);
+        }
+
+        .status-badge::before {
+            content: '●';
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .info-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .info-card .label {
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-card .value {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .features {
+            margin-bottom: 30px;
+        }
+
+        .features-title {
+            color: #FFD700;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .feature-item::before {
+            content: '🔹';
+            font-size: 1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer .developer {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .developer-link {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .developer-link:hover {
+            color: #FFF;
+        }
+
+        .hosting-info {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 480px) {
+            .dashboard {
+                padding: 24px;
+                margin: 10px;
+            }
+            
+            .title h1 {
+                font-size: 1.8rem;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #FFD700;
+            font-size: 1rem;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="trophy">
+            <i class="fas fa-trophy"></i>
+        </div>
+        
+        <div class="title">
+            <h1>VEƝI🌿VIƊI🌿VIĆI</h1>
+            <div class="subtitle">Bot de Mise à Jour des Rangs V.V.V</div>
+        </div>
+
+        <button class="status-badge">
+            Bot Actif
+        </button>
+
+        <div class="info-grid grid-2">
+            <div class="info-card">
+                <div class="label">
+                    <i class="fas fa-bullseye"></i>
+                    Groupe Cible
+                </div>
+                <div class="value">Exclusif V.V.V</div>
+            </div>
+            
+            <div class="info-card">
+                <div class="label">
+                    <i class="fas fa-bolt"></i>
+                    Statut
+                </div>
+                <div class="value" id="uptime">En Ligne</div>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="label">
+                    <i class="fas fa-code-branch"></i>
+                    Version
+                </div>
+                <div class="value">2.0 - Production</div>
+            </div>
+            
+            <div class="info-card">
+                <div class="label">
+                    <i class="fas fa-memory"></i>
+                    Mémoire
+                </div>
+                <div class="value" id="memory">Optimisée</div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="features-title">
+                <i class="fas fa-magic"></i>
+                Fonctionnalités
+            </div>
+            <ul class="feature-list">
+                <li class="feature-item">Mise à jour automatique des classements</li>
+                <li class="feature-item">Système de catégories par rangs</li>
+                <li class="feature-item">Historique des modérations</li>
+                <li class="feature-item">Sauvegardes automatiques</li>
+                <li class="feature-item">Commandes personnalisées</li>
+                <li class="feature-item">Interface intuitive</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <div class="developer">
+                Développé avec <span style="color: #ff6b6b;">❤️</span> par 
+                <a href="https://t.me/Kageonightray" class="developer-link" target="_blank">@Kageonightray</a>
+            </div>
+            <div class="hosting-info">
+                🔄 Dernière mise à jour: <span id="timestamp"></span><br>
+                🌐 Hébergé sur Railway - Keep-Alive Actif
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mise à jour du timestamp
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('fr-FR');
+        
+        // Add sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 3000);
+
+        // Add click effect to status badge
+        document.querySelector('.status-badge').addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Add hover effects to info cards
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Simulation de données en temps réel
+        function updateStats() {
+            fetch('/health')
+                .then(response => response.json())
+                .then(data => {
+                    const uptimeHours = Math.floor(data.uptime / 3600);
+                    const uptimeMinutes = Math.floor((data.uptime % 3600) / 60);
+                    document.getElementById('uptime').textContent = `${uptimeHours}h ${uptimeMinutes}m`;
+                    
+                    const memoryMB = Math.round(data.memory.heapUsed / 1024 / 1024);
+                    document.getElementById('memory').textContent = `${memoryMB} MB`;
+                })
+                .catch(() => {
+                    // En cas d'erreur, garder les valeurs par défaut
+                });
+        }
+
+        // Mettre à jour les stats toutes les 30 secondes
+        updateStats();
+        setInterval(updateStats, 30000);
+    </script>
+</body>
+  </html>
